@@ -48,13 +48,13 @@ import {
   MessageSquare
 } from "lucide-react";
 
-// Initial empty profile
+// Initial default profile for Ramesh Kesarwani
 const GUEST_ACC: User = {
   id: "u-guest",
-  name: "Visitor Account",
-  mobile: "9999999999",
-  email: "visitor@bbgp.gov.in",
-  role: "user",
+  name: "Ramesh Kesarwani",
+  mobile: "9876543210",
+  email: "kesarwaniramesh@gmail.com",
+  role: "admin",
   createdAt: new Date().toISOString()
 };
 

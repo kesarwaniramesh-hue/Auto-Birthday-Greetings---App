@@ -7,6 +7,298 @@ import React, { useRef, useState } from "react";
 import { GreetingCardDesign, IndianLanguage } from "../types";
 import { Download, Sparkles, Languages, Check, Copy, MessageSquare } from "lucide-react";
 
+export interface SenderDetails {
+  name: string;
+  designation: string;
+  department: string;
+  institution: string;
+}
+
+export const getSenderDetails = (lang: IndianLanguage): SenderDetails => {
+  switch (lang) {
+    case IndianLanguage.Hindi:
+    case IndianLanguage.Sanskrit:
+    case IndianLanguage.Maithili:
+    case IndianLanguage.Bodo:
+    case IndianLanguage.Dogri:
+    case IndianLanguage.Konkani:
+    case IndianLanguage.Nepali:
+    case IndianLanguage.Sindhi:
+    case IndianLanguage.Santali:
+      return {
+        name: "रमेश केसरवानी",
+        designation: "सहायक अनुसंधान अधिकारी",
+        department: "लोकसभा सचिवालय",
+        institution: "भारत की संसद"
+      };
+    case IndianLanguage.Odia:
+      return {
+        name: "ରମେଶ କେଶରୱାନୀ",
+        designation: "ସହକାରୀ ଗବେଷଣା ଅଧିକାରୀ",
+        department: "ଲୋକସଭା ସଚିବାଳୟ",
+        institution: "ଭାରତର ସଂସଦ"
+      };
+    case IndianLanguage.Tamil:
+      return {
+        name: "ரமேஷ் கேசர்வானி",
+        designation: "உதவி ஆராய்ச்சி அதிகாரி",
+        department: "மக்களவை செயலகம்",
+        institution: "இந்திய நாடாளுமன்றம்"
+      };
+    case IndianLanguage.Telugu:
+      return {
+        name: "రమేష్ కేసర్వాణి",
+        designation: "సహాయ పరిశోధనా అధికారి",
+        department: "లోక్‌సభ സಚಿವಾಲಯം",
+        institution: "భారత పార్లమెంటు"
+      };
+    case IndianLanguage.Malayalam:
+      return {
+        name: "രമേഷ് കേസർവാണി",
+        designation: "അസിസ്റ്റന്റ് റിസർച്ച് ഓഫീസർ",
+        department: "ലോക്സഭാ സെക്രട്ടേറിയറ്റ്",
+        institution: "ഇന്ത്യൻ പാർലമെന്റ്"
+      };
+    case IndianLanguage.Gujarati:
+      return {
+        name: "રમેશ કેસરવાની",
+        designation: "મદદનીશ સંશોધન અધિકારી",
+        department: "લોકસભા સચિવાલય",
+        institution: "ભારતની સંસદ"
+      };
+    case IndianLanguage.Bengali:
+    case IndianLanguage.Manipuri:
+    case IndianLanguage.Assamese:
+      return {
+        name: "রমেশ কেসরওয়ানি",
+        designation: "সহকারী গবেষণা কর্মকর্তা",
+        department: "লোকসভা সচিবালয়",
+        institution: "ভারতের সংসদ"
+      };
+    case IndianLanguage.Marathi:
+      return {
+        name: "रमेश केसरवानी",
+        designation: "सहायक संशोधन अधिकारी",
+        department: "लोकसभा सचिवालय",
+        institution: "भारताची संसद"
+      };
+    case IndianLanguage.Kannada:
+      return {
+        name: "ರಮೇಶ್ ಕೇಸರ್ವಾನಿ",
+        designation: "ಸಹಾಯಕ ಸಂಶೋಧನಾ ಅಧಿಕಾರಿ",
+        department: "ಲೋಕಸಭಾ ಸಚಿವಾಲಯ",
+        institution: "ಭಾರತದ ಸಂಸತ್ತು"
+      };
+    case IndianLanguage.Urdu:
+    case IndianLanguage.Kashmiri:
+      return {
+        name: "رمیش کیسروانی",
+        designation: "اسسٹنٹ ریسرچ آفیسر",
+        department: "لوک سبھا سیکرٹریٹ",
+        institution: "بھارتی پارلیمنٹ"
+      };
+    case IndianLanguage.Punjabi:
+      return {
+        name: "ਰਮੇਸ਼ ਕੇਸਰਵਾਨੀ",
+        designation: "ਸਹਾਇਕ ਖੋਜ ਅਧਿਕਾਰੀ",
+        department: "ਲੋਕ ਸਭਾ ਸਕੱਤਰੇਤ",
+        institution: "ਭਾਰਤ ਦੀ ਸੰਸਦ"
+      };
+    default:
+      return {
+        name: "Ramesh Kesarwani",
+        designation: "Assistant Research Officer",
+        department: "Lok Sabha Secretariat",
+        institution: "Parliament of India"
+      };
+  }
+};
+
+const ParliamentLogo = ({ design, language }: { design: GreetingCardDesign; language: IndianLanguage }) => {
+  const isClassic = design.theme === "classic";
+  const strokeColor = isClassic ? "currentColor" : "#ffd93d"; // gold
+  
+  return (
+    <div className={`mx-auto mb-3 flex flex-col items-center justify-center text-center ${isClassic ? "text-slate-800" : "text-amber-300"}`}>
+      <svg 
+        viewBox="0 0 100 85" 
+        className="w-20 h-16 filter drop-shadow"
+        style={{ color: strokeColor }}
+      >
+        {/* Ground plateau foundation */}
+        <path d="M 5,75 L 95,75" stroke={strokeColor} strokeWidth="3" strokeLinecap="round" />
+        <path d="M 12,71 L 88,71" stroke={strokeColor} strokeWidth="1.5" />
+        
+        {/* Hexagonal/Triangular Modern Sloped Roof Architecture of New Parliament Building */}
+        <polygon 
+          points="50,15 90,53 82,68 18,68 10,53" 
+          fill="none" 
+          stroke={strokeColor} 
+          strokeWidth="2.5" 
+          strokeLinejoin="round" 
+        />
+        
+        {/* Inner high security layered walls and columns */}
+        <path d="M 50,15 L 50,68" stroke={strokeColor} strokeWidth="1.5" />
+        <path d="M 38,26 L 38,68" stroke={strokeColor} strokeWidth="1" strokeDasharray="1,1" />
+        <path d="M 62,26 L 62,68" stroke={strokeColor} strokeWidth="1" strokeDasharray="1,1" />
+        <path d="M 26,38 L 26,68" stroke={strokeColor} strokeWidth="1" />
+        <path d="M 74,38 L 74,68" stroke={strokeColor} strokeWidth="1" />
+        
+        {/* Ashoka Stambh Pinnacle on Roof Center (State Emblem of India) */}
+        <path d="M 50,5 L 50,15" stroke={strokeColor} strokeWidth="3" strokeLinecap="round" />
+        {/* Ashoka Sarnath lion mount pedestal */}
+        <rect x="47" y="11" width="6" height="4" rx="0.5" fill={strokeColor} />
+        <circle cx="50" cy="8" r="2.5" fill={strokeColor} />
+        
+        {/* National Flag of India atop the pinnacle */}
+        <path d="M 50,5 L 50,2" stroke={strokeColor} strokeWidth="1" />
+        <path d="M 50,2 L 56,3.5 L 50,5 Z" fill={strokeColor} />
+        
+        {/* Ashoka Chakra in Center Lobby */}
+        <circle cx="50" cy="46" r="8" stroke={strokeColor} strokeWidth="1.5" fill={isClassic ? "#ffffff" : "rgba(0,0,0,0.2)"} />
+        <circle cx="50" cy="46" r="1.5" fill={strokeColor} />
+        {/* Visual representation of 24 Spokes on Ashoka Chakra */}
+        <path d="M 50,38 L 50,54" stroke={strokeColor} strokeWidth="0.5" />
+        <path d="M 42,46 L 58,46" stroke={strokeColor} strokeWidth="0.5" />
+        <path d="M 44.3,40.3 L 55.7,51.7" stroke={strokeColor} strokeWidth="0.5" />
+        <path d="M 44.3,51.7 L 55.7,40.3" stroke={strokeColor} strokeWidth="0.5" />
+      </svg>
+      <div className="text-[9px] font-mono tracking-[0.25em] font-bold uppercase mt-1 opacity-75">
+        {language === IndianLanguage.Hindi ? "भारत की नई संसद" : "New Parliament of India"}
+      </div>
+      <div className="w-12 h-[1px] bg-amber-400/35 mx-auto my-1.5" />
+    </div>
+  );
+};
+
+const drawParliamentLogo = (
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  color: string,
+  isClassic: boolean
+) => {
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.lineWidth = 1.5;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+
+  // Base ground line at cy + 30
+  ctx.beginPath();
+  ctx.moveTo(cx - 40, cy + 30);
+  ctx.lineTo(cx + 40, cy + 30);
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  // Ground step two
+  ctx.beginPath();
+  ctx.moveTo(cx - 32, cy + 26);
+  ctx.lineTo(cx + 32, cy + 26);
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Sloped modern hexagonal roof outline
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - 25);     // Top apex
+  ctx.lineTo(cx + 35, cy + 8);  // Down right
+  ctx.lineTo(cx + 28, cy + 23); // Inner baseline right
+  ctx.lineTo(cx - 28, cy + 23); // Inner baseline left
+  ctx.lineTo(cx - 35, cy + 8);  // Up left
+  ctx.closePath();
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Center pillar vertical lines
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - 25);
+  ctx.lineTo(cx, cy + 23);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(cx - 10, cy - 14);
+  ctx.lineTo(cx - 10, cy + 23);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(cx + 10, cy - 14);
+  ctx.lineTo(cx + 10, cy + 23);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(cx - 20, cy - 3);
+  ctx.lineTo(cx - 20, cy + 23);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(cx + 20, cy - 3);
+  ctx.lineTo(cx + 20, cy + 23);
+  ctx.stroke();
+
+  // Pinnacle shaft (Pillar)
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - 35);
+  ctx.lineTo(cx, cy - 25);
+  ctx.lineWidth = 3.5;
+  ctx.stroke();
+
+  // Pedestal for Lion Capital
+  ctx.fillRect(cx - 4, cy - 29, 8, 4);
+
+  // Capital ball
+  ctx.beginPath();
+  ctx.arc(cx, cy - 32, 2.5, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Flag mount
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - 35);
+  ctx.lineTo(cx, cy - 38);
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // Little flag wave
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - 38);
+  ctx.lineTo(cx + 6, cy - 36.5);
+  ctx.lineTo(cx, cy - 35);
+  ctx.closePath();
+  ctx.fill();
+
+  // Ashok Chakra Circle
+  ctx.beginPath();
+  ctx.arc(cx, cy + 5, 7, 0, Math.PI * 2);
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+  if (isClassic) {
+    ctx.fillStyle = "#ffffff";
+    ctx.fill();
+    ctx.fillStyle = color;
+  }
+  
+  // Outer circle center core dot
+  ctx.beginPath();
+  ctx.arc(cx, cy + 5, 1, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Visual Spokes
+  ctx.lineWidth = 0.5;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - 2);
+  ctx.lineTo(cx, cy + 12);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(cx - 7, cy + 5);
+  ctx.lineTo(cx + 7, cy + 5);
+  ctx.stroke();
+
+  ctx.restore();
+};
+
 interface VisualCardProps {
   recipientName: string;
   senderName: string;
@@ -160,20 +452,17 @@ export default function VisualCard({
       bodyFont = "Fira Code, Courier New, monospace";
     }
 
-    // 1. App Emoji / Icon
-    ctx.font = "40px sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(design.emoji || "🎂", canvas.width / 2, 75);
+    // 1. App Logo (New Parliament of India)
+    drawParliamentLogo(ctx, canvas.width / 2, 60, secondaryColor, isClassic);
 
     // 2. Birthday Title
     ctx.fillStyle = secondaryColor;
-    ctx.font = `bold 32px ${titleFont}`;
+    ctx.font = `bold 30px ${titleFont}`;
     ctx.fillText("🎂 HAPPY BIRTHDAY 🎂", canvas.width / 2, 135);
 
     // 3. Recipient Name
     ctx.fillStyle = primaryColor;
-    ctx.font = `bold 38px ${titleFont}`;
+    ctx.font = `bold 36px ${titleFont}`;
     ctx.fillText(recipientName || "Recipient Name", canvas.width / 2, 195);
 
     // 4. Greeting Text (With Wrap Support for multiple regional scripts!)
@@ -215,14 +504,33 @@ export default function VisualCard({
     });
 
     // 5. Sender Name Block
-    const bottomY = canvas.height - 85;
+    const isRamesh = !senderName || senderName.toLowerCase().includes("ramesh") || senderName.toLowerCase().includes("kesarwani");
+    const senderDetails = getSenderDetails(language);
+    
+    // Position signature box beautifully
+    const bottomY = canvas.height - 75;
+    
     ctx.fillStyle = subtleColor;
-    ctx.font = `italic 18px ${bodyFont}`;
-    ctx.fillText("Warm Regards & Best Wishes:", canvas.width / 2, bottomY - 30);
+    ctx.font = `italic 15px ${bodyFont}`;
+    ctx.fillText(language === IndianLanguage.Hindi ? "शुभकामनाएँ एवं सादर" : "Warm Regards & Best Wishes", canvas.width / 2, bottomY - 45);
 
-    ctx.fillStyle = secondaryColor;
-    ctx.font = `bold 24px ${titleFont}`;
-    ctx.fillText(senderName || "Sender Name", canvas.width / 2, bottomY);
+    if (isRamesh) {
+      ctx.fillStyle = secondaryColor;
+      ctx.font = `bold 21px ${titleFont}`;
+      ctx.fillText(senderDetails.name, canvas.width / 2, bottomY - 22);
+
+      ctx.fillStyle = primaryColor;
+      ctx.font = `bold 14px ${bodyFont}`;
+      ctx.fillText(senderDetails.designation, canvas.width / 2, bottomY - 3);
+
+      ctx.fillStyle = subtleColor;
+      ctx.font = `12px ${bodyFont}`;
+      ctx.fillText(`${senderDetails.department}, ${senderDetails.institution}`, canvas.width / 2, bottomY + 14);
+    } else {
+      ctx.fillStyle = secondaryColor;
+      ctx.font = `bold 22px ${titleFont}`;
+      ctx.fillText(senderName || "Sender Name", canvas.width / 2, bottomY - 10);
+    }
 
     // Create anchor trigger
     try {
@@ -268,34 +576,55 @@ export default function VisualCard({
         <div className="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full -translate-x-16 -translate-y-16 pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-44 h-44 bg-white/5 rounded-full translate-x-20 translate-y-20 pointer-events-none" />
 
-        {/* Card Content Header */}
-        <div className="relative">
-          <div className="text-4xl md:text-5xl mb-2 filter drop-shadow">
-            {design.emoji || "🎂"}
-          </div>
-          <h1 className="font-display font-extrabold text-2xl md:text-3xl tracking-wider text-amber-300 drop-shadow-sm uppercase">
+        {/* Card Content Header with New Parliament Building Logo */}
+        <div className="relative flex flex-col items-center">
+          <ParliamentLogo design={design} language={language} />
+          <h1 className="font-display font-extrabold text-xl md:text-2xl tracking-wider text-amber-300 drop-shadow-sm uppercase mt-1">
             🎂 Happy Birthday 🎂
           </h1>
         </div>
 
         {/* Card Message Body */}
-        <div className="my-5 relative max-w-lg mx-auto">
-          <h2 className={`font-display font-bold text-xl md:text-3xl mb-3 tracking-tight ${design.theme === "classic" ? "text-slate-950" : "text-white"}`}>
+        <div className="my-4 relative max-w-lg mx-auto">
+          <h2 className={`font-display font-bold text-xl md:text-2xl mb-2 tracking-tight ${design.theme === "classic" ? "text-slate-950" : "text-white"}`}>
             {recipientName || "Recipient Name"}
           </h2>
-          <p className={`${getFontFamilyClass()} ${getFontSizeClass()} leading-loose ${design.theme === "classic" ? "text-slate-800" : "text-white/95"}`}>
+          <p className={`${getFontFamilyClass()} ${getFontSizeClass()} leading-relaxed ${design.theme === "classic" ? "text-slate-800" : "text-white/95"}`}>
             {greetingText || "Wishing you happiness, good health, success and prosperity. May your year ahead be filled with joy and achievements."}
           </p>
         </div>
 
-        {/* Card Sender Footer */}
-        <div className="border-t border-white/10 pt-3 relative">
-          <p className={`text-xs uppercase tracking-widest mb-1 ${design.theme === "classic" ? "text-slate-500" : "text-white/70"}`}>
-            Best Wishes & Regards
+        {/* Card Sender Footer with Localized Designation Block */}
+        <div className="border-t border-white/10 pt-3 relative flex flex-col items-center">
+          <p className={`text-[10px] md:text-xs uppercase tracking-widest mb-1.5 ${design.theme === "classic" ? "text-slate-500" : "text-white/70"}`}>
+            {language === IndianLanguage.Hindi ? "॥ शुभकामनाएँ एवं सादर ॥" : "Best Wishes & Warm Regards"}
           </p>
-          <h3 className={`font-display font-bold text-lg md:text-xl ${design.theme === "classic" ? "text-slate-800" : "text-amber-300"}`}>
-            {senderName || "Ramesh Kesarwani"}
-          </h3>
+          
+          {(() => {
+            const isRamesh = !senderName || senderName.toLowerCase().includes("ramesh") || senderName.toLowerCase().includes("kesarwani");
+            const senderDetails = getSenderDetails(language);
+            if (isRamesh) {
+              return (
+                <div className="space-y-0.5">
+                  <h3 className={`font-display font-extrabold text-base md:text-lg tracking-wide ${design.theme === "classic" ? "text-slate-900" : "text-amber-300"}`}>
+                    {senderDetails.name}
+                  </h3>
+                  <p className={`text-[11px] md:text-xs font-semibold ${design.theme === "classic" ? "text-indigo-600" : "text-amber-200/90"}`}>
+                    {senderDetails.designation}
+                  </p>
+                  <p className={`text-[9px] md:text-[11px] font-mono tracking-wide opacity-80 ${design.theme === "classic" ? "text-slate-600" : "text-slate-200"}`}>
+                    {senderDetails.department}, {senderDetails.institution}
+                  </p>
+                </div>
+              );
+            } else {
+              return (
+                <h3 className={`font-display font-bold text-base md:text-lg ${design.theme === "classic" ? "text-slate-800" : "text-amber-300"}`}>
+                  {senderName}
+                </h3>
+              );
+            }
+          })()}
         </div>
       </div>
 
